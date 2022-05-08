@@ -6,6 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define('country', {
     id:{
       type:DataTypes.STRING,
+      allowNull:false,
       primaryKey:true,
       unique:true
     },
@@ -17,7 +18,7 @@ module.exports = (sequelize) => {
       type:DataTypes.STRING,
       allowNull:false,
     },
-    continente:{
+    continentes:{
       type:DataTypes.STRING,
       allowNull:false,
     },
