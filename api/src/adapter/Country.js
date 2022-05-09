@@ -59,4 +59,20 @@ async function dbGuardarPaises(arrayPaises) {
   }
 }
 
-module.exports = { getPaises, dbPaises, dbGuardarPaises };
+async function dbTodosPaises() {
+  try {
+    const paises = await Country.findAll({
+      attributes: ["id", "nombre", "imagen", "continente"],
+      // include: {
+      //   model: Activity,
+      //   attributes: ["id","nombre","dificultad","duracion","temporada"],
+      //   through: { attributes: [] },
+      // },
+    });
+    return paises;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+module.exports = { getPaises, dbPaises, dbGuardarPaises, dbTodosPaises };
