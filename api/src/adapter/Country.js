@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { Country, Activity } = require("../db.js");
 
 async function getPaises() {
   try {
@@ -6,32 +7,56 @@ async function getPaises() {
     const paises = data.map(
       ({
         cca3: id,
-        name:{official:nombre},
-        flags: [imagen,],
+        name: { official: nombre },
+        flags: [imagen],
         region: continente,
         capital,
         subregion,
         area,
         population: poblacion,
       }) => {
-          if(capital) capital=capital[0];
-          else capital = "no tiene capital";
-        return{
-        id,
-        nombre,
-        imagen,
-        continente,
-        capital,
-        subregion,
-        area,
-        poblacion,
-      }}
+        if (capital) capital = capital[0];
+        else capital = "no tiene capital";
+        return {
+          id,
+          nombre,
+          imagen,
+          continente,
+          capital,
+          subregion,
+          area,
+          poblacion,
+        };
+      }
     );
-   return paises;
+    return paises;
   } catch (error) {
     throw new Error(error);
   }
 }
 
+async function dbPaises() {
+  try {
+    const paises = await Country.findAll({
+      include: {
+        model: Activity,
+        attributes: ["id", "nombre", "dificultad", "duracion", "temporada"],
+        through: { attributes: [] },
+      },
+    });
+    return paises;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
 
-module.exports = { getPaises };
+async function dbGuardarPaises(arrayPaises) {
+  try {
+    await Country.bulkCreate(arrayPaises);
+    return true;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+module.exports = { getPaises, dbPaises, dbGuardarPaises };
