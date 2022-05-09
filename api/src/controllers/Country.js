@@ -1,4 +1,4 @@
-const { dbPaises, getPaises, dbGuardarPaises, dbTodosPaises } = require("../adapter/Country");
+const { dbPaises, getPaises, dbGuardarPaises, dbTodosPaises, dbNamePaises } = require("../adapter/Country");
 
 class Country {
   async getCountries(req, res, next) {
@@ -12,7 +12,8 @@ class Country {
         return res.status(201).json(dbPaises);
       }
       if(name){
-        console.log("estamos buscando por body")
+        const paises = await dbNamePaises(name);
+        return res.json(paises);
       }
       else {
         const dbPaises = await dbTodosPaises();

@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Country, Activity } = require("../db.js");
+const {Op} = require('sequelize');
 
 async function getPaises() {
   try {
@@ -75,4 +76,16 @@ async function dbTodosPaises() {
   }
 }
 
-module.exports = { getPaises, dbPaises, dbGuardarPaises, dbTodosPaises };
+async function dbNamePaises(name){
+  try {
+    const paisesNombre = await Country.findAll({
+      where: { nombre: { [Op.iLike]: `%${name}%` } },
+      attributes: ["id", "nombre", "imagen", "continente"],
+    });
+    return paisesNombre;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+module.exports = { getPaises, dbPaises, dbGuardarPaises, dbTodosPaises,dbNamePaises };
