@@ -13,7 +13,9 @@ class Country {
       }
       if(name){
         const paises = await dbNamePaises(name);
+        if(paises.length)
         return res.json(paises);
+        else return res.status(404).json({menssage:"No hay ningun pais que cumpla con ese criterio"})
       }
       else {
         const dbPaises = await dbTodosPaises();
