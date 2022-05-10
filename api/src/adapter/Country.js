@@ -88,4 +88,21 @@ async function dbNamePaises(name){
   }
 }
 
-module.exports = { getPaises, dbPaises, dbGuardarPaises, dbTodosPaises,dbNamePaises };
+async function dbPaisId(idPais){
+  try{
+  const pais = await Country.findByPk(idPais,{
+    attributes:["id","nombre","imagen","continente","capital","subregion","area","poblacion"],
+    include:{
+      model:Activity,
+      attributes:["id","nombre","dificultad","duracion","temporada"],
+      through: { attributes: []},
+    }
+  });
+  if(pais) return pais;
+  else throw new Error({status:404,message:"Id de pais no existe"});
+}catch(error){
+  throw new Error(error);
+};
+}
+
+module.exports = { getPaises, dbPaises, dbGuardarPaises, dbTodosPaises,dbNamePaises,dbPaisId };

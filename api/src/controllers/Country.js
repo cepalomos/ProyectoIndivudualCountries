@@ -1,4 +1,4 @@
-const { dbPaises, getPaises, dbGuardarPaises, dbTodosPaises, dbNamePaises } = require("../adapter/Country");
+const { dbPaises, getPaises, dbGuardarPaises, dbTodosPaises, dbNamePaises, dbPaisId } = require("../adapter/Country");
 
 class Country {
   async getCountries(req, res, next) {
@@ -23,6 +23,16 @@ class Country {
       }
     } catch (error) {
       next(error);
+    }
+  }
+
+  async getCountriesId (req, res, next){
+    const {idPais} = req.params;
+    try {
+      const pais = await dbPaisId(idPais.toUpperCase());
+      return res.json(pais);
+    } catch (err) {
+      next(err);
     }
   }
 }
