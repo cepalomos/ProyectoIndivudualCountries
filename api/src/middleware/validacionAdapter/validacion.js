@@ -3,7 +3,7 @@ const {Activity} = require('../../db.js');
 function validacion(data){
     const {idPais,nombre,dificultad,duracion,temporada} = data;
     const temporadaDb = Activity.rawAttributes.temporada.values;
-    const regexId = /[A-Z]{3}/;
+    const regexId = /^[A-Z]{3}$/;
     const regexNombre = /^([a-zA-Z]|[^0-9]\S)([^0-9]*){1,}$/;
     let error = [];
     if(!regexId.test(idPais)) error.push({message:"Solo son letras mayusculas y tienen que ser 3 de estas"});
