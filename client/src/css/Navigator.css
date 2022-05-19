@@ -1,0 +1,10 @@
+.navigator_contenedor{
+    display: flex;
+    justify-content: space-around;
+}
+.navigator_selectores{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}

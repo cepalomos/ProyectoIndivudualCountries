@@ -63,12 +63,12 @@ async function dbGuardarPaises(arrayPaises) {
 async function dbTodosPaises() {
   try {
     const paises = await Country.findAll({
-      attributes: ["id", "nombre", "imagen", "continente"],
-      // include: {
-      //   model: Activity,
-      //   attributes: ["id","nombre","dificultad","duracion","temporada"],
-      //   through: { attributes: [] },
-      // },
+      attributes: ["id", "nombre", "imagen", "continente","poblacion"],
+      include: {
+        model: Activity,
+        attributes: ["id","nombre"],
+        through: { attributes: [] },
+      },
     });
     return paises;
   } catch (error) {

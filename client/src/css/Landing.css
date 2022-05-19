@@ -1,0 +1,17 @@
+.landing_contenedor{
+    width: 95%;
+    height: 95%;
+    margin: auto;
+    display: flex;
+}
+.landing_imagen{
+    max-width: 98%;
+    z-index: 0;
+    margin: 0 auto;
+}
+.landing_boton{
+    display: fixed;
+    z-index: 1;
+    top: 45%;
+    left: 45%;
+}
