@@ -8,7 +8,6 @@ import DetailCountry from "./components/DetailCountry";
 
 function App() {
   let { pathname } = useLocation();
-  console.log(pathname);
   return (
     <div className="App">
       {pathname === "/" ? (
