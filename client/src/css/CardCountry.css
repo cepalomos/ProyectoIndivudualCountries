@@ -1,0 +1,26 @@
+.card_contenedor{
+    width: 250px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid blue;
+    border-radius: 10px;
+}
+.card_contenedorLeyenda{
+    height: 45%;
+    justify-content: space-between;
+}
+.card_imagen{
+    padding: 8px;
+    width: 234px;
+    height: 156px;
+}
+.card_contenedorLeyenda{
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.card_contenedorLeyenda_titulo{
+    text-align: center;
+}

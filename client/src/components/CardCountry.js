@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/CardCountry.css";
 
 export default function CardCountry({ nombre, imagen, continente }) {
   return (

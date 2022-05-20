@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { peticionCountries } from "../redux/actions";
 import Loading from "./Loading";
 import CardCountry from "./CardCountry";
+import "../css/Home.css";
 
 export default function Home() {
   const { loading, countries, error } = useSelector((state) => state);
