@@ -1,11 +1,12 @@
 import React from 'react'
 import Select from './Select'
+import "../css/Order.css";
 
-export default function Order() {
+export default function Order({funcion}) {
   return (
-    <div>
-        <Select seleccion={({selector:"Asendete o desendente por nombre",options:[{id:1,name:"ASC"},{id:2,name:"DES"}]})}/>
-        <Select seleccion={({selector:"mayor o menor por cantidad de poblacion",options:[{id:1,name:"Menor"},{id:2,name:"Mayor"}]})}/>
+    <div className='order_contenedor'>
+        <Select funcion={funcion} options={[{id:"AASC",name:"Asendente"},{id:"ADES",name:"Desendente"}]} text={"opcion alfabetica"}/>
+        <Select funcion={funcion} options={[{id:"PASC",name:"Asendente"},{id:"PDES",name:"Desendente"}]} text={"opcion por poblacion"}/>
     </div>
   )
 }

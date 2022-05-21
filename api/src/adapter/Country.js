@@ -8,7 +8,7 @@ async function getPaises() {
     const paises = data.map(
       ({
         cca3: id,
-        name: { official: nombre },
+        translations: { spa:{official:nombre} },
         flags: [imagen],
         region: continente,
         capital,
@@ -18,6 +18,7 @@ async function getPaises() {
       }) => {
         if (capital) capital = capital[0];
         else capital = "no tiene capital";
+        nombre = nombre.toUpperCase();
         return {
           id,
           nombre,
