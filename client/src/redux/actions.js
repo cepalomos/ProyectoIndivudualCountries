@@ -27,8 +27,8 @@ const countries_page = (numberPages, star, end, currentPage) => {
   const countriesContinente = (continente) => {
     return { type: COUNTRIES_CONTINENTE, payload: continente };
   };
-  const countriesActividad = (actividad) => {
-    return { type: COUNTRIES_ACTIVIDAD, payload: actividad };
+  const countriesActividad = (Actividad) => {
+    return { type: COUNTRIES_ACTIVIDAD, payload: Actividad };
   };
   const countriesAlfAsc = () => {
     return { type: COUNTRIES_ALF_ASC };

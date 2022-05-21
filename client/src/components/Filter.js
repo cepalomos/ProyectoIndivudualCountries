@@ -1,20 +1,18 @@
 import React from "react";
 import Select from "./Select";
 
-export default function Filter() {
-  function filtrar(){
-    alert("sirvo");
-  }
+export default function Filter({opcionContinente,funcionContinente,funcionActividad,opcionActividad}) {
   return (
     <div>
-      {" "}
       <Select
-        funcion={filtrar}
-        options={[
-          { id: "AASC", name: "Asendente" },
-          { id: "ADES", name: "Desendente" },
-        ]}
-        text={"opcion alfabetica"}
+        funcion={funcionContinente}
+        options={opcionContinente}
+        text={"continentes"}
+      />
+      <Select
+        funcion={funcionActividad}
+        options={opcionActividad}
+        text={"actividades"}
       />
     </div>
   );

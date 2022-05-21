@@ -67,7 +67,7 @@ async function dbTodosPaises() {
       attributes: ["id", "nombre", "imagen", "continente","poblacion"],
       include: {
         model: Activity,
-        attributes: ["id","nombre"],
+        attributes: ["nombre"],
         through: { attributes: [] },
       },
     });

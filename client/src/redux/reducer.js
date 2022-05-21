@@ -16,6 +16,7 @@ const initialState = {
   countries: [],
   pagination:[],
   numberPages:[],
+  countriesFilter:[],
   currentPage:1,
   error: "",
 };
@@ -33,6 +34,7 @@ const countriesApi = (state = initialState, action) => {
         ...state,
         loading: false,
         countries: action.payload,
+        countriesFilter:action.payload,
         error: "",
       };
     case COUNTRY_FAILURE:
@@ -52,13 +54,13 @@ const countriesApi = (state = initialState, action) => {
         case COUNTRIES_ACTIVIDAD:
             return {
                 ...state,
-                countries:state.countries.filter(({activities})=> ((activities.length !== 0)?activities.some(({id,nombre})=>nombre === action.payload):false)),
+                countries:state.countriesFilter.filter(({activities})=> ((activities.length !== 0)?activities.some(({nombre})=>nombre === action.payload):false)),
                 error:'',
             };
         case COUNTRIES_CONTINENTE:
              return {
                  ...state,
-                 countries:state.countries.filter(({continente})=> continente === action.payload),
+                 countries:state.countriesFilter.filter(({continente})=> continente === action.payload),
                  error:'',
              }
         case COUNTRIES_ALF_ASC:

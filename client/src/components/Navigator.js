@@ -5,23 +5,29 @@ import Input from "./Input";
 import "../css/Navigator.css";
 import Order from "./Order";
 import { useDispatch, useSelector } from "react-redux";
-import {countriesOrder} from "../redux/actions";
+import {countriesOrder,countriesContinente,countriesActividad} from "../redux/actions";
 
 export default function Navigator() {
-  const { countries } = useSelector((state) => state);
+  const { countriesFilter,countries } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [continente,setContinente] = useState([]);
-  const [actividad,setActividad] = useState([]);
+  const [actividad,setActividad] = useState([{id:1,name:"no hay opciones"}]);
   useEffect(()=>{
-    let continente = new Set(countries.map(({continente})=> continente))
-    continente = Array.from(continente);
+    let continente = new Set(countries.map(({continente})=> continente));
+    continente = Array.from(continente).map((dato)=>({id:dato,name:dato}));
     setContinente(continente);
-    let actividad = new Set(countries.map(({activities})=>{if(activities.length)return activities}).flat());
-    actividad = Array.from(actividad);
+    let actividad = new Set(countries.map(({activities})=>activities.lenght !==0?activities:false).flat().filter(obj=>obj).map(({nombre})=>nombre));
+    actividad = Array.from(actividad).map(acti=>({id:acti,name:acti}));
     setActividad(actividad);
-  },[countries])
+  },[countriesFilter])
   function order(opcion){
     dispatch(countriesOrder(opcion));
+  }
+  function filterContinente(opcion){
+    dispatch(countriesContinente(opcion))
+  }
+  function filterActividad(opcion){
+    dispatch(countriesActividad(opcion));
   }
   return (
     <>
@@ -32,7 +38,7 @@ export default function Navigator() {
 
         <div className="navigator_selectores">
           <Order funcion={order}/>
-          <Filter opcionContinente={continente}/>
+          <Filter opcionContinente={continente} funcionContinente={filterContinente} funcionActividad={filterActividad} opcionActividad={actividad}/>
         </div>
         <Input />
       </nav>
