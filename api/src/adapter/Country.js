@@ -81,7 +81,12 @@ async function dbNamePaises(name){
   try {
     const paisesNombre = await Country.findAll({
       where: { nombre: { [Op.iLike]: `%${name}%` } },
-      attributes: ["id", "nombre", "imagen", "continente"],
+      attributes: ["id", "nombre", "imagen", "continente","poblacion"],
+      include: {
+        model: Activity,
+        attributes: ["nombre"],
+        through: { attributes: [] },
+      }
     });
     return paisesNombre;
   } catch (error) {
